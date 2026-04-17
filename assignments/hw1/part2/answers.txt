@@ -1,0 +1,66 @@
+# CS 503 — HW1 Part 2: File Permissions
+#
+# SECTION A: chmod Commands
+# For each file, write the exact chmod command you used to fix its
+# permissions. One command per file.
+#
+# Example:
+#   some_file.txt: chmod 644 some_file.txt
+# ====================================================================
+
+deploy.sh: chmod 750 deploy.sh
+
+database_backup.sh: chmod 700 database_backup.sh
+
+api_keys.conf: chmod 600 api_keys.conf
+
+shared_data.csv: chmod 640 shared_data.csv
+
+report_generator.py: chmod 750 report_generator.py
+
+experiment_log.txt: chmod 444 experiment_log.txt
+
+project_dir/: chmod 750 project_dir/
+
+run_tests.sh: chmod 755 run_tests.sh
+
+
+# ====================================================================
+# SECTION B: Conceptual Questions
+# Answer each question in a few sentences.
+# ====================================================================
+
+# Q2a. A file has permissions rw-r----- and is owned by user alice and
+# group mlteam. Can user bob, who is a member of mlteam, execute the
+# file? Can he read it?
+
+Q2a: Bob cannot execute the file, but he can read it.
+
+
+# Q2b. You run ls -l and see -rwxrwxrwx on a file containing your API
+# keys. Explain why this is a problem and what permissions you would
+# set instead. Give the chmod command you would use.
+
+Q2b: This is bad because it means all users can read, write, and execute
+     the file containing your API keys.  You don't want just anyone to
+     be able to use these, and you certainly don't want anyone to be able to 
+     change or delete the file.  It makes most sense for only you to be 
+     able to read them and change them.
+	chmod 600 <filename>
+     This would give rw-------
+
+
+# Q2c. A directory has permissions rwxr-xr-x. You are not the owner
+# and not in the group. Can you list the directory's contents? Can you
+# create a new file inside it? Explain why or why not.
+
+Q2c:    You can list the directories contents because you have read 
+	permissions as an "other" user.  You cannot create a file inside 
+	of it because you do not have write permissions.
+ 
+
+# Q2d. What is the difference between chmod 755 and chmod u=rwx,go=rx?
+
+Q2d:  There is no difference, they both provide all permissions to
+      the file owner, and read and execute permissions to the file's
+      group and all other users.                  

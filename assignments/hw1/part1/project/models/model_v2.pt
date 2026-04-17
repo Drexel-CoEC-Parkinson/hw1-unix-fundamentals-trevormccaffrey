@@ -1,0 +1,6 @@
+# PyTorch Model Checkpoint (simulated binary)
+# model: ResNet-50 fine-tuned
+# epoch: 47
+# val_accuracy: 0.9234
+# optimizer: AdamW lr=0.0003
+# This is a placeholder — real .pt files are binary.

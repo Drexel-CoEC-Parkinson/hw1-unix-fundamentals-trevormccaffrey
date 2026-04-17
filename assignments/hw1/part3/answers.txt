@@ -1,0 +1,83 @@
+# CS 503 — HW1 Part 3: Pipes and Text Processing
+# Write your answers below in the specified format.
+# For each question, provide your pipeline command and the output.
+#
+# Format:
+#   Q1:
+#   COMMAND: <your pipeline here>
+#   ANSWER: <the output>
+
+Q1:
+COMMAND: tail -n +2 server_log.csv | wc -l
+ANSWER: 50000
+
+Q2:
+COMMAND: tail -n +2 server_log.csv | cut -d',' -f2 | sort | uniq | wc -l
+ANSWER: 15
+
+Q3:
+COMMAND: tail -n +2 server_log.csv | cut -d',' -f4 | sort | uniq -c | sort -rn | head -n5
+ANSWER: 10003 /api/predict
+   	 6708 /health
+   	 3394 /api/data/download
+   	 3386 /docs
+  	 3368 /api/evaluate
+
+Q4:
+COMMAND: tail -n +2 server_log.csv | cut -d',' -f5 | grep "^5" -c
+ANSWER: 8279
+
+Q5:
+COMMAND: grep "/api/predict" server_log.csv | awk -F',' '{sum += $6} {n += 1} END {print sum/n}'
+ANSWER: 1065.21
+
+Q6:
+COMMAND: tail -n +2 server_log.csv | cut -d',' -f2 | sort | uniq -c | sort -rn | head -n1
+ANSWER: 3513 192.168.1.110
+
+Q7:
+COMMAND: grep 'POST' server_log.csv | egrep '12:[0-5][0-9]:[0-5][0-9]|13:00:00' | wc -l
+ANSWER: 596
+
+Q8:
+COMMAND: tail -n +2 server_log.csv | cut -d',' -f5,7 | grep "404," | sort | cut -d',' -f2 | uniq
+ANSWER: 
+curl/7.81.0
+curl/7.88.1
+Go-http-client/2.0
+HTTPie/3.2.1
+Java/11.0.19
+Mozilla/5.0
+PostmanRuntime/7.32.3
+python-requests/2.28.1
+python-requests/2.31.0
+
+Q9:
+COMMAND: tail -n +2 server_log.csv |cut -d',' -f3 | sort | uniq -c | sort -nr
+ANSWER:   
+  24968 GET
+  15084 POST
+   5011 DELETE
+   4937 PUT
+
+Q10:
+COMMAND: tail -n +2 server_log.csv | sort -t',' -k6 -nr | head -n10 | cut -d',' -f1,4,6
+ANSWER:
+2024-01-19T15:09:46,/api/train,69236
+2024-01-18T13:49:04,/api/train,69198
+2024-01-21T14:40:27,/api/train,69091
+2024-01-15T00:02:33,/api/train,68651
+2024-01-25T15:45:54,/api/train,68550
+2024-01-06T07:30:53,/api/train,68251
+2024-01-27T08:34:40,/api/train,67287
+2024-01-21T17:11:25,/api/train,67199
+2024-01-22T00:26:45,/api/train,67191
+2024-01-13T09:28:23,/api/train,66895
+
+Q11:
+COMMAND: tail -n +2 server_log.csv | cut -d',' -f7 | sort | uniq -c | sort -rn | tr -s ' ' | cut -d' ' -f3 | head -n1 | grep -f - server_log.csv | awk -F',' '$5 ~ /5[0-9][0-9]/ {nErr++} {n++} {endpoint = $7} END {print "Endpoint: " endpoint "\nNumber of Errors: " nErr "\nNumber of Requests: " n "\nError Rate: "  100*nErr/n "%"}'
+ANSWER:
+Endpoint: Mozilla/5.0
+Number of Errors: 1637
+Number of Requests: 9907
+Error Rate: 16.5237%

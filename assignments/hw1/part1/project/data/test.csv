@@ -1,0 +1,4 @@
+id,timestamp,sensor_id,reading,unit,status
+1,2024-01-20T12:00:01,temp_01,21.8,celsius,ok
+2,2024-01-20T12:00:02,humidity_01,50.1,percent,ok
+3,2024-01-20T12:00:03,pressure_01,1015.00,hPa,ok

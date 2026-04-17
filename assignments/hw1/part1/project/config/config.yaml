@@ -1,0 +1,25 @@
+# Experiment Configuration — v3 (final)
+model:
+  architecture: resnet50
+  pretrained: true
+  num_classes: 6
+
+training:
+  epochs: 50
+  batch_size: 64
+  learning_rate: 0.0003
+  optimizer: adamw
+  weight_decay: 0.01
+  scheduler: cosine_annealing
+
+data:
+  train_path: ./data/train.csv
+  val_path: ./data/val.csv
+  test_path: ./data/test.csv
+  augmentation:
+    random_rotation: 15
+    horizontal_flip: true
+
+output:
+  model_dir: ./models
+  log_dir: ./logs

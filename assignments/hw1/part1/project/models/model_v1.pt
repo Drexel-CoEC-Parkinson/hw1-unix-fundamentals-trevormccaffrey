@@ -1,0 +1,6 @@
+# PyTorch Model Checkpoint (simulated binary)
+# model: ResNet-50 baseline
+# epoch: 30
+# val_accuracy: 0.8701
+# optimizer: SGD lr=0.01
+# Note: Superseded by model_v2.pt

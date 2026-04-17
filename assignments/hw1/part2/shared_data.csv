@@ -1,0 +1,5 @@
+id,name,value,status
+1,sensor_alpha,42.5,active
+2,sensor_beta,38.1,active
+3,sensor_gamma,0.0,inactive
+4,sensor_delta,55.9,active

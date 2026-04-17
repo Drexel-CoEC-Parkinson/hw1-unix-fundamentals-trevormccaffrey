@@ -1,0 +1,20 @@
+Project Notes
+=============
+
+2024-01-10: Started fine-tuning ResNet-50 on the sensor classification task.
+            Using AdamW with lr=3e-4, batch size 64.
+
+2024-01-12: First results look promising. Val accuracy 87% after 10 epochs.
+            Need to try data augmentation.
+
+2024-01-15: Added random rotation and horizontal flip. Val accuracy up to 91%.
+
+2024-01-18: Switched to cosine annealing LR schedule. Slight improvement.
+
+2024-01-20: Best run so far: 92.3% val accuracy at epoch 47.
+            Saved as model_v2.pt.
+
+TODO:
+- Try learning rate warmup
+- Experiment with larger batch sizes
+- Clean up this project directory (it's a mess)
